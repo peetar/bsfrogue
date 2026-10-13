@@ -38,7 +38,7 @@ const MainApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-[#0b0f19] sepia:bg-sepia-200 text-slate-900 dark:text-slate-100 sepia:text-sepia-950 transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-[#0b0f19] sepia:bg-sepia-200 text-slate-900 dark:text-slate-100 sepia:text-sepia-950 transition-colors duration-200 overflow-x-hidden">
       <Header onOpenSettings={() => setIsSettingsOpen(true)} />
 
       {/* PWA Install Banner */}
