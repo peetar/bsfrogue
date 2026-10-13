@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ChevronLeft, ChevronRight, CheckCircle2, ChevronDown, Printer } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ScriptureButton } from './ScriptureButton';
 import { AutoGrowTextarea } from './AutoGrowTextarea';
+import { PrintLessonModal } from './PrintLessonModal';
 
 export const LessonView: React.FC = () => {
   const {
@@ -17,6 +18,8 @@ export const LessonView: React.FC = () => {
     setAnswer,
     getDayProgress,
   } = useApp();
+
+  const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
 
   const currentDay = useMemo(() => {
     return currentLesson.days.find(d => d.dayNumber === currentDayNumber) || currentLesson.days[0];
@@ -69,9 +72,21 @@ export const LessonView: React.FC = () => {
           </div>
         </div>
 
-        <h1 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white sepia:text-sepia-950 tracking-tight leading-snug break-words">
-          {currentLesson.title}
-        </h1>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pt-1">
+          <h1 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white sepia:text-sepia-950 tracking-tight leading-snug break-words flex-1">
+            {currentLesson.title}
+          </h1>
+
+          {/* Print button in the lower right of the box above Day 1, Day 2, Day 3 */}
+          <button
+            onClick={() => setIsPrintModalOpen(true)}
+            className="self-end sm:self-auto shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 dark:bg-[#0c1322] sepia:bg-sepia-150 hover:bg-slate-200 dark:hover:bg-[#1f2b42] sepia:hover:bg-sepia-100 text-slate-800 dark:text-slate-200 sepia:text-sepia-950 border border-slate-300 dark:border-[#35486b] sepia:border-sepia-300 transition shadow-2xs cursor-pointer active:scale-95"
+            title="Print or view all 6 days with questions and answers"
+          >
+            <Printer className="w-4 h-4 text-blue-700 dark:text-blue-400 sepia:text-sepia-700" />
+            <span>Print</span>
+          </button>
+        </div>
       </div>
 
       {/* Sticky Day Navigation Tabs */}
@@ -338,6 +353,12 @@ export const LessonView: React.FC = () => {
           <ChevronRight className="w-4 h-4 shrink-0" />
         </button>
       </div>
+
+      {/* Print Lesson Modal (Days 1–6) */}
+      <PrintLessonModal
+        isOpen={isPrintModalOpen}
+        onClose={() => setIsPrintModalOpen(false)}
+      />
     </div>
   );
 };

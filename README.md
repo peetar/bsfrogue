@@ -39,7 +39,13 @@ Built with **React 18**, **TypeScript**, **Tailwind CSS**, and **Vite PWA**. Rea
 - **"Resume Study" Hero Card**: One tap returns you directly to your last lesson and day worked on.
 - **30-Lesson Grid**: Shows titles, passages, and progress bars for all 30 lessons, with direct jump pills to any of the 6 days.
 
-### 6. Daily Study Reminders
+### 6. 1-Click Print & Plain Text Study Sheet
+- **Print Lesson Button**: Conveniently located in the lesson header right above the day tabs.
+- **Combined 6-Day Study Sheet**: Formats all 6 days with day titles, reading passages, summaries, questions, scripture links, and entered answers into a clean study transcript.
+- **Native Device Printing**: Tapping "Print" opens the device's native print dialog (`window.print()`), with tailored print CSS ensuring crisp black-and-white output on paper or "Save to PDF".
+- **1-Click Copy**: Copies the full plain-text lesson to the clipboard for sharing or pasting into email or docs.
+
+### 7. Daily Study Reminders
 - Choose which days to study (e.g., M, T, W, Th) and your preferred study time (e.g. 08:00 AM).
 - **Browser Notifications**: Web Notification API support in PWA mode.
 - **1-Click "Add to Phone Calendar" (.ics)**: Downloads a recurring calendar reminder with an alarm for Apple Calendar or Google Calendar on your phone.
